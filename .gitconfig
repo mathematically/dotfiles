@@ -1,0 +1,34 @@
+[core]
+	editor = vim
+[user] 	
+	name = matthewrbnsn
+	email = matthewrbnsn@gmail.com
+[push]
+	default = simple
+[alias]
+	co = checkout
+	br = branch
+
+	cfg = config -l
+	ecfg = config --global -e
+	stat = status -sb
+	update = !git pull --rebase --prune $@ && git submodule update --init --recursive
+
+	cmt = !git add -A && git commit -m
+	SAVE = !git add -A && git commit -m 'SAVEPOINT'
+	WIPE = !git add -u && git commit -m 'WIPE'
+	UNDO = reset HEAD~1 --mixed
+	amend = !git add -A && git commit --all --amend
+	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+
+	bclean = "!f() { git branch --merged ${1-master} | grep -v ${1-master}$ | xargs -r git branch -d; }; f"
+	bdone = "!f() { git checkout ${1-master} && git update && git bclean ${1-master}; }; f"
+	bnew = "!f() { git fetch origin && git checkout -b ${1} origin/${1}; }; f"
+	dl = !git ll -1
+	dlc = diff --cached HEAD^
+	dr = "!f() { git diff -w $1^..$1; }; f"
+	diffr = "!f() { git diff $1^..$1; }; f"
+	l = log --pretty=oneline --abbrev-commit --abbrev=4 --decorate -20
+	ll = log --pretty=oneline --abbrev-commit --abbrev=4 --decorate
+	g = log --pretty=oneline --abbrev-commit --abbrev=4 -20 --graph --decorate
+	gg = log --pretty=oneline --abbrev-commit --abbrev=4 --graph --decorate
