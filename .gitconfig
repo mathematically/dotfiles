@@ -34,11 +34,9 @@
 	bdone = "!f() { git checkout ${1-main} && git upd && git bclean ${1-main}; }; f"
 	bnew = "!f() { git fetch origin && git checkout -b ${1} origin/${1}; }; f"
 
-	# diff last, diff last commit, diff remote, etc.
+	# diff last, diff last commit
 	dl = !git ll -1
 	dlc = diff --cached HEAD^
-	dr = "!f() { git diff -w $1^..$1; }; f"
-	diffr = "!f() { git diff $1^..$1; }; f"
 
 	# pretty logs and graphs
 	l = log --pretty=oneline --abbrev-commit --abbrev=4 --decorate -20
