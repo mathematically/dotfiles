@@ -1,0 +1,54 @@
+[core]
+	editor = nvim
+[user] 	
+	name = matthewrbnsn
+	email = matthewrbnsn@gmail.com
+[init]
+	defaultBranch = main
+[push]
+	default = simple
+[branch "main"]
+	mergeoptions = --ff-only
+[alias]
+	co = checkout
+	br = branch
+
+	# show config, edit config
+	cfg = config -l
+	ecfg = config --global -e
+
+	# The greatest alias ever.
+	stat = status -sb
+
+	# upd = update = update from remote in every way I can think of.
+	# cmt = commit how I always do it as a single command.
+	# amd = amend for dirty rebasers
+	upd = !git pull --rebase --prune $@ && git submodule update --init --recursive
+	cmt = !git add -A && git commit -m
+	amd = !git add -A && git commit --all --amend
+
+	# clean = delete all merged branches
+	# done = update everything and clean
+	# new = checkout new branch and track remote
+	bclean = "!f() { git branch --merged ${1-main} | grep -v ${1-main}$ | xargs -r git branch -d; }; f"
+	bdone = "!f() { git checkout ${1-main} && git upd && git bclean ${1-main}; }; f"
+	bnew = "!f() { git fetch origin && git checkout -b ${1} origin/${1}; }; f"
+
+	# diff last, diff last commit, diff remote, etc.
+	dl = !git ll -1
+	dlc = diff --cached HEAD^
+	dr = "!f() { git diff -w $1^..$1; }; f"
+	diffr = "!f() { git diff $1^..$1; }; f"
+
+	# pretty logs and graphs
+	l = log --pretty=oneline --abbrev-commit --abbrev=4 --decorate -20
+	ll = log --pretty=oneline --abbrev-commit --abbrev=4 --decorate
+	g = log --pretty=oneline --abbrev-commit --abbrev=4 -20 --graph --decorate
+	gg = log --pretty=oneline --abbrev-commit --abbrev=4 --graph --decorate
+
+[filter "lfs"]
+	# Because there was that one project where I had to commit some JPGs.
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
