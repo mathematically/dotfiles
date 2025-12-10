@@ -1,0 +1,57 @@
+[core]
+autocrlf = input
+editor = nvim
+[init]
+defaultBranch = main
+[push]
+default = simple
+[branch "main"]
+mergeoptions = --ff-only
+[alias]
+co = checkout
+br = branch
+
+# show config, edit config
+cfg = config -l
+ecfg = config --global -e
+
+stat = status -sb
+
+# upd = update = update from remote in every way I can think of.
+# cmtg = commit how I always do it as a single command.
+# cmt = commit with commitizen
+# amd = amend for dirty rebasers
+upd = !git pull --rebase --prune $@ && git submodule update --init --recursive
+cmtg = !git add -A && git commit -m
+cmt = !git add -A && cz
+amd = !git add -A && git commit --all --amend
+
+# clean = delete all merged branches
+# done = update everything and clean
+# new = checkout new branch and track remote
+bclean = "!f() { git branch --merged ${1-main} | grep -v ${1-main}$ | xargs -r git branch -d; }; f"
+bdone = "!f() { git checkout ${1-main} && git upd && git bclean ${1-main}; }; f"
+bnew = "!f() { git fetch origin && git checkout -b ${1} origin/${1}; }; f"
+
+# diff last, diff last commit
+dl = !git ll -1
+dlc = diff --cached HEAD^
+
+# pretty logs and graphs
+l = log --pretty=oneline --abbrev-commit --abbrev=4 --decorate -20
+ll = log --pretty=oneline --abbrev-commit --abbrev=4 --decorate
+g = log --pretty=oneline --abbrev-commit --abbrev=4 -20 --graph --decorate
+gg = log --pretty=oneline --abbrev-commit --abbrev=4 --graph --decorate
+[safe]
+directory = D:/dev
+directory = D:/figrollapps
+
+[user]
+name = Matthew
+email = matthewrbnsn@gmail.com
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
