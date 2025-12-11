@@ -22,8 +22,8 @@ stat = status -sb
 # cmt = commit with commitizen
 # amd = amend for dirty rebasers
 upd = !git pull --rebase --prune $@ && git submodule update --init --recursive
-cmtg = !git add -A && git commit -m
-cmt = !git add -A && cz
+cmt = !git add -A && git commit -m
+cmtz = !git add -A && cz
 amd = !git add -A && git commit --all --amend
 
 # clean = delete all merged branches
