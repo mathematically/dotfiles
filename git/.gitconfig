@@ -49,9 +49,10 @@ directory = D:/figrollapps
 [user]
 name = Matthew
 email = matthewrbnsn@gmail.com
-[credential "https://github.com"]
+[credential]
+	helper = manager
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = /usr/bin/git-credential-manager
+	credentialStore = gpg
+[credential "https://dev.azure.com"]
+	useHttpPath = true
