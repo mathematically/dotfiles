@@ -25,11 +25,13 @@ zinit cdreplay -q
 bindkey -v
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+PROMPT_EOL_MARK=''
 
-HISTSIZE=5000
+HISTSIZE=10000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
+
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
@@ -63,7 +65,7 @@ bindkey "\e[H"  beginning-of-line
 bindkey "\e[F"  end-of-line
 bindkey "\e\d"  undo
 
-alias ls="eza -a --icons=always --long --color=auto"
+alias ls="eza -a --icons=always --color=auto"
 alias grep="grep --color=auto"
 alias cat="bat"
 alias vim="nvim"
