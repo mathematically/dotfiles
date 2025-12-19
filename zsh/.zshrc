@@ -1,3 +1,7 @@
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(fzf --zsh)"
+
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 if [ ! -d "$ZINIT_HOME" ]; then
@@ -12,13 +16,10 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::command-not-found
-
 autoload -Uz compinit && compinit
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
 
 zinit cdreplay -q
 
@@ -37,25 +38,10 @@ setopt sharehistory
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
 
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
-eval "$(fzf --zsh)"
-
-export EDITOR="nvim"
 export SUDO_EDITOR="$EDITOR"
 
-unsetopt autocd beep
-
-# Fix zsh history editing
+# Fixes zsh history editing
 bindkey "\e[1;5D" backward-word
 bindkey "\e[1;5C" forward-word
 bindkey "\e[3;5~" kill-word
@@ -64,6 +50,8 @@ bindkey "\e[3~" delete-char
 bindkey "\e[H"  beginning-of-line
 bindkey "\e[F"  end-of-line
 bindkey "\e\d"  undo
+# this line stops the ghost character issue on scroll through command history
+LC_ALL=en_GB.utf-8
 
 alias ls="eza -a --icons=always --color=auto"
 alias grep="grep --color=auto"

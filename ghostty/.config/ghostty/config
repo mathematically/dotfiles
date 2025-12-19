@@ -1,7 +1,8 @@
 theme = "Catppuccin Mocha"
 window-decoration = false
-background-opacity = 0.90
+background-opacity = 0.85
 font-size = 14
+
 # Run `ghostty +show-config --default --docs` to view a list of
 # all available config options and their default values.
 #

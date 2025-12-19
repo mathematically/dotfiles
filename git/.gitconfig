@@ -47,12 +47,11 @@ directory = D:/dev
 directory = D:/figrollapps
 
 [user]
-name = Matthew
+name = mathematically
 email = matthewrbnsn@gmail.com
-[credential]
-	helper = manager
+[credential "https://github.com"]
 	helper = 
-	helper = /usr/bin/git-credential-manager
-	credentialStore = gpg
-[credential "https://dev.azure.com"]
-	useHttpPath = true
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
