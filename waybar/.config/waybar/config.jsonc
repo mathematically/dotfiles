@@ -17,8 +17,8 @@
     "custom/notification",
     "tray",
     "pulseaudio",
-    "network",
     "battery",
+    "network",
     "clock",
     "clock#simpleclock",
   ],
@@ -94,7 +94,7 @@
   "custom/power": {
     "tooltip": false,
     "on-click": "wlogout -p layer-shell &",
-    "format": "⏻",
+    "format": "<span size='13000' foreground='#f5e0dc'>⏻</span>",
   },
   "custom/notification": {
     "escape": true,
