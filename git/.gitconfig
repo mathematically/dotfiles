@@ -47,12 +47,5 @@ directory = D:/dev
 directory = D:/figrollapps
 
 [user]
-name = Matthew
+name = mathematically
 email = matthewrbnsn@gmail.com
-[credential]
-	helper = manager
-	helper = 
-	helper = /usr/bin/git-credential-manager
-	credentialStore = gpg
-[credential "https://dev.azure.com"]
-	useHttpPath = true
