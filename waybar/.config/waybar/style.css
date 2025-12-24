@@ -14,13 +14,11 @@
 @define-color cotton #fbfbf9;
 @define-color crust #11111b;
 
-@define-color neutral #6c7086;
-
 * {
   min-height: 0;
   min-width: 0;
   font-family: "JetBrainsMono";
-  font-size: 16;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -28,30 +26,36 @@ window#waybar {
   background: @crust;
   background-color: transparent;
   border-radius: 6px;
-  margin: 0.4rem 0.2rem;
+  padding-right: 1.4rem;
+  padding-left: 1.4rem;
+  margin: 0.2rem 0.2rem; 
   transition-property: background-color;
   transition-duration: 0.5s;
 }
 
 window > box {
   margin-top: 4px;
-  margin-left: 2px;
-  margin-right: 2px;
-  padding: 4px;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 0px;
 }
 
 #workspaces {
   background-color: @crust;
   border-radius: 6px;
-  margin: 0.2rem;
-  padding-left: 0.4rem;
-  padding-right: 0.4rem;
+  /*margin: 0.2rem;*/
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
 
 #workspaces button {
   background-color: @crust;
-  color: @neutral;
-  border: transparent;
+  color: @mauve;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left: 2px;
+  margin-right: 2px;
+  border-radius: 6px;
 }
 
 #workspaces button:hover {
@@ -63,10 +67,13 @@ window > box {
 }
 
 #workspaces button.active {
-  color: @mauve;
+  background-color: @mauve;
+  border: transparent;
+  color: @crust;
 }
 
 #workspaces button.urgent {
+  background-color: @crust;
   color: @red;
 }
 
@@ -76,8 +83,8 @@ window > box {
 #network,
 #tray,
 #window {
-  padding: 1.0rem 1.2rem;
-  margin: 0.2rem 0.2rem;
+  padding: 0.8rem;
+  margin: 0.2rem;
   border-radius: 6px;
   background-color: @crust;
   color: @blue;
@@ -91,7 +98,7 @@ window#waybar.empty #window {
 }
 
 #network {
-  color: @yellow;
+  color: @mauve;
 }
 
 #clock {
