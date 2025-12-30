@@ -18,7 +18,16 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
 
+# command history.
 autoload -Uz compinit && compinit
+
+# ctrl-x, ctrl-e will edit the current command in $EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
+# Expand history commands such as 'sudo !!' using space bar.
+bindkey ' ' magic-space
 
 zinit cdreplay -q
 
@@ -63,8 +72,7 @@ bindkey "\e[H"  beginning-of-line
 bindkey "\e[F"  end-of-line
 bindkey "\e\d"  undo
 
-alias ls="eza -a --icons=always --long --color=auto"
+alias lss="eza -a --icons=always --long --color=auto"
 alias grep="grep --color=auto"
-alias cat="bat"
 alias vim="nvim"
 
