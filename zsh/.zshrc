@@ -18,8 +18,13 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
 
-# command history.
 autoload -Uz compinit && compinit
+
+zinit cdreplay -q
+
+bindkey -v
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 
 # ctrl-x, ctrl-e will edit the current command in $EDITOR
 autoload -Uz edit-command-line
@@ -29,11 +34,10 @@ bindkey '^x^e' edit-command-line
 # Expand history commands such as 'sudo !!' using space bar.
 bindkey ' ' magic-space
 
-zinit cdreplay -q
-
-bindkey -v
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+# Suffix aliases
+alias -s md="bat"
+alias -s yaml="bat -l yaml"
+alias -s json="jless"
 
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
